@@ -20,7 +20,7 @@ lst = ["Test1", "Test2", 3]  # Temporary for testing
 def handle_append(lst):
     try:
         user_input = input("Enter a value to append: ")
-        if not user_input:  # Checks if the input is empty.
+        if not user_input:  # Checks if the input is empty
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
         print(e)
@@ -36,7 +36,7 @@ def handle_extend(lst):
             raise ValueError("Empty input, please try again.")
         values = [
             value.strip() for value in user_input.split(",")
-        ]  # Removes the whitespaces to check if the input is empty.
+        ]  # Removes the whitespaces to check if the input is empty
         if not any(values):
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
@@ -49,11 +49,11 @@ def handle_extend(lst):
 def handle_insert(lst):
     try:
         user_index = input("Please choose your index: ")
-        if not user_index.isdigit():  # check if user_index is a digit.
+        if not user_index.isdigit():  # check if user_index is a digit
             raise ValueError("Index must be an integer, please try again.")
-        user_index = int(user_index)  # Convert user_index to integer.
+        user_index = int(user_index)  # Convert user_index to integer
         if user_index < 0 or user_index > len(lst):
-            raise IndexError("Index out of range, please try again.")
+            raise IndexError("Index doesn't exist, please try again.")
         user_input = input("Enter a string to insert: ")
         if not user_input:
             raise ValueError("Empty input, please try again.")
@@ -77,11 +77,22 @@ def handle_remove(lst):
 
 
 def handle_pop(lst):
-    # TODO: Prompt the user for an index to pop (optional, leave empty to pop last item)
-    # Use the pop() method to remove the item at the specified index or the last item if no index is provided
-    # Handle the case where the index is out of range
-    # Print the updated list
-    pass
+    try:
+        user_input = input("Choose index to pop (leave empty to pop the last item): ")
+        if user_input == "":
+            user_index = -1  # Default to pop the last item if empty
+        else:
+            user_index = int(user_input)
+            if user_index < 0 or user_index >= len(lst):
+                raise IndexError("Index doesn't exist, please try again.")
+    except ValueError:
+        print("Index must be an integer, please try again.")
+        return
+    except IndexError as e:
+        print(e)
+        return
+    lst.pop(user_index)
+    print(lst)
 
 
 def handle_clear(lst):
