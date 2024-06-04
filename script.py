@@ -14,12 +14,9 @@ def display_menu():
     print("12. Exit")
 
 
-lst = ["Test1", "Test2", 3, "Test1", 2]  # Temporary for testing
-
-
 def handle_append(lst):
     try:
-        user_input = input("Enter a value to append: ")
+        user_input = input("Enter a value to append: ").strip()
         if not user_input:  # Checks if the input is empty
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
@@ -48,13 +45,13 @@ def handle_extend(lst):
 
 def handle_insert(lst):
     try:
-        user_index = input("Please choose your index: ")
+        user_index = input("Please choose your index: ").strip()
         if not user_index.isdigit():  # check if user_index is a digit
             raise ValueError("Index must be an integer, please try again.")
         user_index = int(user_index)  # Convert user_index to integer
         if user_index < 0 or user_index > len(lst):
             raise IndexError("Index doesn't exist, please try again.")
-        user_input = input("Enter a string to insert: ")
+        user_input = input("Enter a string to insert: ").strip()
         if not user_input:
             raise ValueError("Empty input, please try again.")
     except (ValueError, IndexError) as e:
@@ -66,7 +63,7 @@ def handle_insert(lst):
 
 def handle_remove(lst):
     try:
-        user_input = input("Enter a value to be removed: ")
+        user_input = input("Enter a value to be removed: ").strip()
         if user_input not in lst:
             raise ValueError("Value not found in the list, please try again.")
     except ValueError as e:
@@ -78,7 +75,9 @@ def handle_remove(lst):
 
 def handle_pop(lst):
     try:
-        user_input = input("Choose index to pop (leave empty to pop the last item): ")
+        user_input = input(
+            "Choose index to pop (leave empty to pop the last item): "
+        ).strip()
         if user_input == "":
             user_index = -1  # Default to pop the last item if empty
         else:
@@ -102,18 +101,18 @@ def handle_clear(lst):
 
 def handle_index(lst):
     try:
-        user_input = input()
+        user_input = input("Choose your value: ").strip()
         if user_input not in lst:
             raise ValueError("Value not found, please try again")
     except ValueError as e:
         print(e)
         return
-    lst.index(user_input)
-    print(lst)
+    user_index = lst.index(user_input)
+    print(f"Value {user_input} is on index {user_index}.")
 
 
 def handle_count(lst):
-    user_input = input()
+    user_input = input("Choose your value: ").strip()
     print(f"Value '{user_input}' is {lst.count(user_input)} times in the list.")
 
 
@@ -123,26 +122,22 @@ def handle_sort(lst):
 
 
 def handle_reverse(lst):
-    # TODO: Use the reverse() method to reverse the order of the list
-    # Print the updated list
     lst.reverse()
     print(lst)
 
 
 def handle_copy(lst):
-    # TODO: Use the copy() method to create a shallow copy of the list
-    # Print the copied list
     new_list = lst.copy()
     print(new_list)
 
 
 def main():
-    # initial_values = input("Enter initial list values (comma-separated): ")
-    # lst = initial_values.split(",")
+    initial_values = input("Enter initial list values (comma-separated): ").strip()
+    lst = initial_values.split(",")
 
     while True:
         display_menu()
-        choice = input("Enter your choice (1-12): ")
+        choice = input("Enter your choice (1-12): ").strip()
         if choice == "1":
             handle_append(lst)
         elif choice == "2":
