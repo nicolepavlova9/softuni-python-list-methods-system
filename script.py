@@ -15,10 +15,15 @@ def display_menu():
 
 
 def handle_append(lst):
-    # TODO: Prompt the user for a value to append to the list
-    # Use the append() method to add the value to the list
-    # Print the updated list
-    pass
+    try:
+        user_input = input("Enter a string to append: ")
+        if not user_input:
+            raise ValueError("Empty input, please try again.")
+    except ValueError as e:
+        print(e)
+        return
+    lst.append(user_input)
+    print(lst)
 
 
 def handle_extend(lst):
@@ -92,34 +97,34 @@ def handle_copy(lst):
 
 def main():
     initial_values = input("Enter initial list values (comma-separated): ")
-    lst = initial_values.split(',')
+    lst = initial_values.split(",")
 
     while True:
         display_menu()
         choice = input("Enter your choice (1-12): ")
-        if choice == '1':
+        if choice == "1":
             handle_append(lst)
-        elif choice == '2':
+        elif choice == "2":
             handle_extend(lst)
-        elif choice == '3':
+        elif choice == "3":
             handle_insert(lst)
-        elif choice == '4':
+        elif choice == "4":
             handle_remove(lst)
-        elif choice == '5':
+        elif choice == "5":
             handle_pop(lst)
-        elif choice == '6':
+        elif choice == "6":
             handle_clear(lst)
-        elif choice == '7':
+        elif choice == "7":
             handle_index(lst)
-        elif choice == '8':
+        elif choice == "8":
             handle_count(lst)
-        elif choice == '9':
+        elif choice == "9":
             handle_sort(lst)
-        elif choice == '10':
+        elif choice == "10":
             handle_reverse(lst)
-        elif choice == '11':
+        elif choice == "11":
             handle_copy(lst)
-        elif choice == '12':
+        elif choice == "12":
             print("Exiting the application.")
             break
         else:
