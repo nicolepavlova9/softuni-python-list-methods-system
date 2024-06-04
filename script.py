@@ -47,18 +47,17 @@ def handle_extend(lst):
 
 
 def handle_insert(lst):
-    # TODO: Prompt the user for an index and a value to insert at that index
-    # Use the insert() method to add the value at the specified index
-    # Print the updated list
     try:
-        user_index = int(input("Please choose your index: "))
-
-        if not lst[user_index]:  # Check if index exist in the list.
-            raise IndexError("Index doesn't exist, please try again")
+        user_index = input("Please choose your index: ")
+        if not user_index.isdigit():
+            raise ValueError("Index must be an integer, please try again.")
+        user_index = int(user_index)
+        if user_index < 0 or user_index > len(lst):
+            raise IndexError("Index out of range, please try again.")
         user_input = input("Enter a string to insert: ")
         if not user_input:
             raise ValueError("Empty input, please try again.")
-    except (IndexError, ValueError) as e:
+    except (ValueError, IndexError) as e:
         print(e)
         return
     lst.insert(user_index, user_input)
