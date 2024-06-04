@@ -101,11 +101,15 @@ def handle_clear(lst):
 
 
 def handle_index(lst):
-    # TODO: Prompt the user for a value to find its index
-    # Use the index() method to find the index of the value
-    # Handle the case where the value is not found in the list
-    # Print the index of the value
-    pass
+    try:
+        user_input = input()
+        if user_input not in lst:
+            raise ValueError("Value not found, please try again")
+    except ValueError as e:
+        print(e)
+        return
+    lst.index(user_input)
+    print(lst)
 
 
 def handle_count(lst):
