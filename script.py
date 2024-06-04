@@ -14,10 +14,13 @@ def display_menu():
     print("12. Exit")
 
 
+lst = ["Test1", "Test2", 3]  # Temporary for testing
+
+
 def handle_append(lst):
     try:
         user_input = input("Enter a string to append: ")
-        if not user_input:
+        if not user_input:  # Checks if the input is empty.
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
         print(e)
@@ -31,7 +34,9 @@ def handle_extend(lst):
         user_input = input("Enter values to extend, comma separated: ").strip()
         if not user_input:
             raise ValueError("Empty input, please try again.")
-        values = [value.strip() for value in user_input.split(",")]
+        values = [
+            value.strip() for value in user_input.split(",")
+        ]  # Removes the whitespaces to check if the input is empty.
         if not any(values):
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
@@ -45,7 +50,19 @@ def handle_insert(lst):
     # TODO: Prompt the user for an index and a value to insert at that index
     # Use the insert() method to add the value at the specified index
     # Print the updated list
-    pass
+    try:
+        user_index = int(input("Please choose your index: "))
+
+        if not lst[user_index]:  # Check if index exist in the list.
+            raise IndexError("Index doesn't exist, please try again")
+        user_input = input("Enter a string to insert: ")
+        if not user_input:
+            raise ValueError("Empty input, please try again.")
+    except (IndexError, ValueError) as e:
+        print(e)
+        return
+    lst.insert(user_index, user_input)
+    print(lst)
 
 
 def handle_remove(lst):
@@ -104,8 +121,8 @@ def handle_copy(lst):
 
 
 def main():
-    initial_values = input("Enter initial list values (comma-separated): ")
-    lst = initial_values.split(",")
+    # initial_values = input("Enter initial list values (comma-separated): ")
+    # lst = initial_values.split(",")
 
     while True:
         display_menu()
