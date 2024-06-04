@@ -14,7 +14,7 @@ def display_menu():
     print("12. Exit")
 
 
-lst = ["Test1", "Test2", 3]  # Temporary for testing
+lst = ["Test1", "Test2", 3, "Test1", 2]  # Temporary for testing
 
 
 def handle_append(lst):
@@ -113,10 +113,8 @@ def handle_index(lst):
 
 
 def handle_count(lst):
-    # TODO: Prompt the user for a value to count its occurrences in the list
-    # Use the count() method to count how many times the value appears in the list
-    # Print the count of the value
-    pass
+    user_input = input()
+    print(f"Value '{user_input}' is {lst.count(user_input)} times in the list.")
 
 
 def handle_sort(lst):
