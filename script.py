@@ -118,9 +118,8 @@ def handle_count(lst):
 
 
 def handle_sort(lst):
-    # TODO: Use the sort() method to sort the list in ascending order
-    # Print the updated list
-    pass
+    lst.sort(key=str)  # Key string treats all elements as strings, so it doesn't break
+    print(lst)
 
 
 def handle_reverse(lst):
