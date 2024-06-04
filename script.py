@@ -19,7 +19,7 @@ lst = ["Test1", "Test2", 3]  # Temporary for testing
 
 def handle_append(lst):
     try:
-        user_input = input("Enter a string to append: ")
+        user_input = input("Enter a value to append: ")
         if not user_input:  # Checks if the input is empty.
             raise ValueError("Empty input, please try again.")
     except ValueError as e:
@@ -49,9 +49,9 @@ def handle_extend(lst):
 def handle_insert(lst):
     try:
         user_index = input("Please choose your index: ")
-        if not user_index.isdigit():
+        if not user_index.isdigit():  # check if user_index is a digit.
             raise ValueError("Index must be an integer, please try again.")
-        user_index = int(user_index)
+        user_index = int(user_index)  # Convert user_index to integer.
         if user_index < 0 or user_index > len(lst):
             raise IndexError("Index out of range, please try again.")
         user_input = input("Enter a string to insert: ")
@@ -65,11 +65,15 @@ def handle_insert(lst):
 
 
 def handle_remove(lst):
-    # TODO: Prompt the user for a value to remove from the list
-    # Use the remove() method to delete the first occurrence of the value
-    # Handle the case where the value is not found in the list
-    # Print the updated list
-    pass
+    try:
+        user_input = input("Enter a value to be removed: ")
+        if user_input not in lst:
+            raise ValueError("Value not found in the list, please try again.")
+    except ValueError as e:
+        print(e)
+        return
+    lst.remove(user_input)
+    print(lst)
 
 
 def handle_pop(lst):
