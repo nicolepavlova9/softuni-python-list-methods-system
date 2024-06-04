@@ -27,10 +27,18 @@ def handle_append(lst):
 
 
 def handle_extend(lst):
-    # TODO: Prompt the user for values to extend the list (comma-separated)
-    # Use the extend() method to add these values to the list
-    # Print the updated list
-    pass
+    try:
+        user_input = input("Enter values to extend, comma separated: ").strip()
+        if not user_input:
+            raise ValueError("Empty input, please try again.")
+        values = [value.strip() for value in user_input.split(",")]
+        if not any(values):
+            raise ValueError("Empty input, please try again.")
+    except ValueError as e:
+        print(e)
+        return
+    lst.extend(values)
+    print(lst)
 
 
 def handle_insert(lst):
